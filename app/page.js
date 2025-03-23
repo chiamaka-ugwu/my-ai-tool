@@ -1,5 +1,7 @@
 "use client";
 import { assets } from "@/assets/assets";
+import Message from "@/components/Message";
+import PromptBox from "@/components/PromptBox";
 import Sidebar from "@/components/Sidebar";
 import Image from "next/image";
 import { useState } from "react";
@@ -29,15 +31,18 @@ export default function Home() {
             <>
               <div className="flex items-center gap-3">
                 <Image src={assets.favicon} alt="icon" />
-                <p> Hi, I'm Chi's AI Tool</p>
+                <p> Hi, I'm ChiNova</p>
               </div>
               <p className="text-sm mt-2">What do you need to know?</p>
             </>
           ) : (
-            <div></div>
+            <div>
+              <Message role='ai' content='What is css?' />
+            </div>
           )}
 
           {/* prompt box */}
+          <PromptBox isLoading={isLoading} setIsLoading={setIsLoading} />
           <p className="text-xs absolute bottom-1 text-gray-500">AI-generated, for reference only</p>
         </div>
       </div>

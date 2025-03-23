@@ -1,5 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
+import { AppContextProvider } from "@/context/AppContext";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -7,14 +9,20 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Chi AI Tool",
-  description: "Created my own AI tool",
+  title: "ChiNova",
+  description: "I created my own AI tool",
 };
+
+
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} antialiased`}>{children}</body>
-    </html>
+    <ClerkProvider>
+      <AppContextProvider>
+        <html lang="en">
+          <body className={`${inter.className} antialiased`}>{children}</body>
+        </html>
+      </AppContextProvider>
+    </ClerkProvider>
   );
 }
