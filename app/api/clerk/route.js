@@ -12,7 +12,6 @@ export async function POST(req) {
     "svix-signature": headerPayload.get["svix-signature"],
   };
 
-
   // get the payload and verify it
   const payload = await req.json();
   const body = JSON.stringify(payload);
@@ -21,25 +20,26 @@ export async function POST(req) {
   // prepare the user data to be saved in the database
   const userData = {
     _id: data.id,
-    name: `${data.first_name} ${data.last_name}`,
     email: data.email_addresses[0].email_address,
+    name: `${data.first_name} ${data.last_name}`,
     image: data.image_url,
-  }
+  };
 
   await connectDB();
 
   switch (key) {
-    case "user-created":
+    case "user.created":
       await User.create(userData);
       break;
-    case "user-updated":
+    case "user.updated":
       await User.findByIdAndUpdate(data.id, userData);
       break;
-    case "user-deleted":
+    case "user.deleted":
       await User.findByIdAndDelete(data.id);
       break;
     default:
       break;
   }
 
+  return NextRequest.json({ message: "Event received" });
 }
