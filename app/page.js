@@ -31,7 +31,7 @@ export default function Home() {
             <>
               <div className="flex items-center gap-3">
                 <Image src={assets.favicon} alt="icon" />
-                <p> Hi, I&apos;m ChiNova</p>
+                <p>Hi, I&apos;m ChiNova</p>
               </div>
               <p className="text-sm mt-2">What do you need to know?</p>
             </>
